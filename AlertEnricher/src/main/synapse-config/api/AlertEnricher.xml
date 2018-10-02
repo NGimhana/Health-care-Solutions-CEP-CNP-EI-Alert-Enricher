@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/alertenricher" name="AlertEnricher" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/hemoglobinenrich">
+        <inSequence>
+            <log description="Log" level="custom">
+                <property name="Log" value="Request Came"/>
+            </log>
+            <property description="Report" expression="json-eval($.event.report)" name="uri.var.report" scope="default" type="STRING"/>
+            <property description="reportdate" expression="json-eval($.event.reportdate)" name="uri.var.reportdate" scope="default" type="STRING"/>
+            <property description="result" expression="json-eval($.event.result)" name="uri.var.result" scope="default" type="STRING"/>
+            <property description="Sender Email" expression="json-eval($.event.email)" name="uri.var.senderemail" scope="default" type="STRING"/>
+            <property description="GetPatientID" expression="json-eval($.event.patientURL)" name="uri.var.patientid" scope="default" type="STRING"/>
+            <log level="custom">
+                <property expression="get-property('uri.var.patientid')" name="PatientID"/>
+            </log>
+            <header name="Accept" scope="transport" value="application/json"/>
+            <call>
+                <endpoint>
+                    <http method="get" uri-template="https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/{uri.var.patientid}"/>
+                </endpoint>
+            </call>
+            <property description="Patient Name" expression="json-eval($.name[0].text)" name="uri.var.patientName" scope="default" type="STRING"/>
+            <property description="Home Address Line" expression="json-eval($.address[0].line[0])" name="uri.var.patientAddress" scope="default" type="STRING"/>
+            <property description="Home Address City" expression="json-eval($.address[0].city)" name="uri.var.addressCity" scope="default" type="STRING"/>
+            <property description="Home Address State" expression="json-eval($.address[0].state)" name="uri.var.addressState" scope="default" type="STRING"/>
+            <property description="Home Phone" expression="json-eval($.telecom[0].value)" name="uri.var.homePhone" scope="default" type="STRING"/>
+            <property description="Email" expression="json-eval($.telecom[5].value)" name="uri.var.email" scope="default" type="STRING"/>
+            <property description="Gender" expression="json-eval($.gender)" name="uri.var.gender" scope="default" type="STRING"/>
+            <property description="BirthDate" expression="json-eval($.birthDate)" name="uri.var.birthdate" scope="default" type="STRING"/>
+            <!--payloadFactory description="" media-type="json">
+                <format>
+{
+	"patientname" : "$1",
+	"report" : "$2",
+	"result"   : "$3",
+	"senderemail" : "$4",
+	"homeaddressline" : "$5",
+	"homeaddresscity" : "$6",
+	"homeaddressstate" : "$7",
+	"homephone" : "$8" ,
+	"email" : "$9",
+	"gender" : "$10",
+	"birthDate" : "$11",
+	"patientID" : "$12",
+	"reportdate" : "$13"
+}
+</format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('uri.var.patientName')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.report')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.result')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.senderemail')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.patientAddress')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.addressCity')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.addressState')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.homePhone')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.email')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.gender')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.birthdate')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.patientid')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.reportdate')"/>
+                </args>
+            </payloadFactory-->
+            <payloadFactory media-type="xml">
+                <format>
+                    <p:addDiagnosticAlertOp xmlns:p="http://ws.wso2.org/dataservice">
+                        <p:patientId>$1</p:patientId>
+                        <p:patientName>$2</p:patientName>
+                        <p:report>$3</p:report>
+                        <p:reportdate>$4</p:reportdate>
+                        <p:result>$5</p:result>
+                        <p:email>$6</p:email>
+                        <p:homeaddressline>$7</p:homeaddressline>
+                        <p:homeaddresscity>$8</p:homeaddresscity>
+                        <p:homeaddressstate>$9</p:homeaddressstate>
+                        <p:homephone>$10</p:homephone>
+                        <p:gender>$11</p:gender>
+                        <p:birthdate>$12</p:birthdate>
+                    </p:addDiagnosticAlertOp>
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('uri.var.patientid')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.patientName')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.report')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.reportdate')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.result')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.email')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.patientAddress')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.addressCity')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.addressState')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.homePhone')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.gender')"/>
+                    <arg evaluator="xml" expression="get-property('uri.var.birthdate')"/>
+                </args>
+            </payloadFactory>
+            <call>
+                <endpoint>
+                    <http method="post" uri-template="https://localhost:8243/services/DiagnosticAlertDataService/addDiagnosticAlertOp  "/>
+                </endpoint>
+            </call>
+            <log level="custom">
+                <property expression="get-property('uri.var.addressCity')" name="patientName"/>
+            </log>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="AlertEnricher" groupId="com.example.AlertEnricher.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/AlertEnricher.xml</file>
+    </artifact>
+    <artifact name="KafkaInbound" groupId="com.example.AlertEnricher.inbound-endpoint" version="1.0.0" type="synapse/inbound-endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/inbound-endpoints/KafkaInbound.xml</file>
+    </artifact>
+    <artifact name="request" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/request.xml</file>
+    </artifact>
+    <artifact name="fault" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/fault.xml</file>
+    </artifact>
+</artifacts>
