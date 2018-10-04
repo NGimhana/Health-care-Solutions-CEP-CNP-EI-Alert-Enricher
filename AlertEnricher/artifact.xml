@@ -11,4 +11,13 @@
     <artifact name="fault" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/fault.xml</file>
     </artifact>
+    <artifact name="KafkaMedicationOrderEPIC" groupId="com.example.AlertEnricher.inbound-endpoint" version="1.0.0" type="synapse/inbound-endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/inbound-endpoints/KafkaMedicationOrderEPIC.xml</file>
+    </artifact>
+    <artifact name="MedicationOrderEPICEnricher" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/MedicationOrderEPICEnricher.xml</file>
+    </artifact>
+    <artifact name="MedicationOrderEPICEnricherFault" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/MedicationOrderEPICEnricherFault.xml</file>
+    </artifact>
 </artifacts>
