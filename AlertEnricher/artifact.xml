@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?><artifacts>
-    <artifact name="AlertEnricher" groupId="com.example.AlertEnricher.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/api/AlertEnricher.xml</file>
+    <artifact name="Blood_Hemoglobin_EPIC_Kafka_Inbound" groupId="com.example.AlertEnricher.inbound-endpoint" version="1.0.0" type="synapse/inbound-endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/inbound-endpoints/Blood_Hemoglobin_EPIC_Kafka_Inbound.xml</file>
     </artifact>
-    <artifact name="KafkaInbound" groupId="com.example.AlertEnricher.inbound-endpoint" version="1.0.0" type="synapse/inbound-endpoint" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/inbound-endpoints/KafkaInbound.xml</file>
+    <artifact name="observationFaultSequence" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/observationFaultSequence.xml</file>
     </artifact>
-    <artifact name="request" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/sequences/request.xml</file>
+    <artifact name="observationSequence" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/observationSequence.xml</file>
     </artifact>
-    <artifact name="fault" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/sequences/fault.xml</file>
+    <artifact name="medicationOrderSequence" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/medicationOrderSequence.xml</file>
     </artifact>
-    <artifact name="KafkaMedicationOrderEPIC" groupId="com.example.AlertEnricher.inbound-endpoint" version="1.0.0" type="synapse/inbound-endpoint" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/inbound-endpoints/KafkaMedicationOrderEPIC.xml</file>
+    <artifact name="medicationOrderFaultSequence" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/medicationOrderFaultSequence.xml</file>
     </artifact>
-    <artifact name="MedicationOrderEPICEnricher" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/sequences/MedicationOrderEPICEnricher.xml</file>
+    <artifact name="Blood_Glucose_EPIC_Kafka_Inbound" groupId="com.example.AlertEnricher.inbound-endpoint" version="1.0.0" type="synapse/inbound-endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/inbound-endpoints/Blood_Glucose_EPIC_Kafka_Inbound.xml</file>
     </artifact>
-    <artifact name="MedicationOrderEPICEnricherFault" groupId="com.example.AlertEnricher.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/sequences/MedicationOrderEPICEnricherFault.xml</file>
+    <artifact name="blood_Cholesterol_EPIC_Kafka_Inbound" groupId="com.example.AlertEnricher.inbound-endpoint" version="1.0.0" type="synapse/inbound-endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/inbound-endpoints/blood_Cholesterol_EPIC_Kafka_Inbound.xml</file>
+    </artifact>
+    <artifact name="Blood_Potassium_EPIC_Kafka_Inbound" groupId="com.example.AlertEnricher.inbound-endpoint" version="1.0.0" type="synapse/inbound-endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/inbound-endpoints/Blood_Potassium_EPIC_Kafka_Inbound.xml</file>
+    </artifact>
+    <artifact name="Medication_Order_EPIC_Kafka_Inbound" groupId="com.example.AlertEnricher.inbound-endpoint" version="1.0.0" type="synapse/inbound-endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/inbound-endpoints/Medication_Order_EPIC_Kafka_Inbound.xml</file>
     </artifact>
 </artifacts>
